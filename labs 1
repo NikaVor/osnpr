@@ -1,0 +1,20 @@
+
+#include <stdio.h>
+#include <windows.h>
+int main()
+{
+	float L; 
+	float v; 
+	float t1; 
+	float t2; 
+	printf("L=");
+	scanf("%f", &L);
+	printf("t1=");
+	scanf("%f", &t1);
+	printf("t2=");
+	scanf("%f", &t2);
+	v = (L / t1) - (L / t2);
+	printf("speed is: %f\n", v);
+	system("PAUSE");
+	return 0;
+}
