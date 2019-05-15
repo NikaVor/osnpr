@@ -1,0 +1,24 @@
+#define N 10 
+#include <stdio.h> 
+#include<time.h>
+#include<stdlib.h>
+int main (void) 
+{ 
+int i = 0; 
+int s[N]; 
+int c = 0; 
+srand(time(NULL));
+for (i = 0; i < N; (s[i]=rand()%10), printf("%d ",s[i]), i++) ;
+printf("\n");
+for (i = 0; i < N / 2; i++) 
+{ 
+c = s[i]; 
+s[i] = s[N - i - 1]; 
+s[N - 1 - i] = c; 
+} 
+for (i = 0; i < N; i++) 
+printf("%d ", s[i]); 
+getchar();
+getchar();
+return 0;
+}
