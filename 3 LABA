@@ -4,7 +4,7 @@ int prov(char mass[], int m);
 
  main()
 {
-  int word,pos;
+  int word;
   char i,F,c;
   char s[50];
   memset(s,'\0',50);
