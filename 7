@@ -1,0 +1,35 @@
+#include <stdio.h>
+int lengt(int a);
+void binary_print(long a);
+int main(void)
+{
+ unsigned int mask_1,mask_2;
+	int i=0,N,l;
+	scanf("%d",&N);
+	binary_print(N);
+	l=lengt(N);
+	mask_2=mask_1=0x1;
+	mask_1<<=1;
+	for(i=0; i < l/2+1; i++)
+	{
+		if((mask_1 & N)==0 || (mask_2 & N)==0)
+		{
+			if((mask_1 & N)==0 && (mask_2 & N)!=0)
+			{
+				N&= (~mask_2);
+				N|=mask_1;
+			}
+			else if((mask_2 & N)==0 && (mask_1 & N)!=0)
+			{
+				N&=(~mask_1);
+				N|=mask_2;
+			}
+		}
+		mask_1<<=2;
+		mask_2<<=2;
+	}
+	binary_print(N);
+	if(N==0)
+		printf("0\n");
+	return 0;
+}
