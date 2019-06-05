@@ -33,3 +33,26 @@ int main(void)
 		printf("0\n");
 	return 0;
 }
+int lengt(int num)
+{
+	int i;
+	for(i=0; num!=0; i++)
+		num=num/2;
+	return i-1;
+}
+void binary_print(long a)
+{
+	unsigned mask = 0x80000000;
+	printf("binary number: ");
+	for (int i = 1; i <= (sizeof(a) * 8); i++)
+	{
+		if (a & mask)
+			printf("1");
+		else
+			printf("0");
+		if ((i % 8) == 0)
+			printf(" ");
+		mask = mask>>1;
+	}
+	printf("\n");
+}
