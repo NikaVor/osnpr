@@ -1,58 +1,49 @@
 #include <stdio.h>
 int lengt(int a);
-void binary_print(long a);
-int main(void)
+void bp(int N);
+main()
 {
  unsigned int mask_1,mask_2;
 	int i=0,N,l;
 	scanf("%d",&N);
-	binary_print(N);
+	printf("\n");
+	bp(N);
 	l=lengt(N);
 	mask_2=mask_1=0x1;
-	mask_1<<=1;
-	for(i=0; i < l/2+1; i++)
+	mask_1<<=l;
+	for(i=0; i < l/2; i++)
 	{
-		if((mask_1 & N)==0 || (mask_2 & N)==0)
-		{
-			if((mask_1 & N)==0 && (mask_2 & N)!=0)
-			{
-				N&= (~mask_2);
-				N|=mask_1;
-			}
-			else if((mask_2 & N)==0 && (mask_1 & N)!=0)
-			{
-				N&=(~mask_1);
-				N|=mask_2;
-			}
-		}
-		mask_1<<=2;
-		mask_2<<=2;
+		N&=(~mask_2);
+		mask_2<<=1;
 	}
-	binary_print(N);
-	if(N==0)
-		printf("0\n");
+	mask_2=0x1;
+	for(i=0; i < l/2; i++)
+	{
+		if((mask_1 & N) !=0)
+			N|=mask_2;
+		mask_1>>=1;
+		mask_2<<=1;
+	}
+	bp(N);
 	return 0;
 }
-int lengt(int num)
+lengt(int num)
 {
 	int i;
 	for(i=0; num!=0; i++)
 		num=num/2;
 	return i-1;
 }
-void binary_print(long a)
+void bp(int N)
 {
-	unsigned mask = 0x80000000;
-	printf("binary number: ");
-	for (int i = 1; i <= (sizeof(a) * 8); i++)
+	int mask=0x1,i;
+	mask<<=lengt(N);
+	for(i=0; i<=lengt(N); i++)
 	{
-		if (a & mask)
+		if(mask & N)
 			printf("1");
-		else
-			printf("0");
-		if ((i % 8) == 0)
-			printf(" ");
-		mask = mask>>1;
+		else printf("0");
+		mask>>=1;
 	}
 	printf("\n");
 }
